@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact | Ubuntu Haven Resort</title>
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" href="styleguide.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- REQUIREMENT: Student Banner -->
+    <div class="student-banner" role="alert">EDUCATIONAL PURPOSES ONLY. NOT A REAL RESORT.</div>
+    
+    <div class="layout-frame">
+      <a href="#main-content" class="skip-link">Skip to content</a>
+      
+      <header class="hero">
+        <div class="hero__bg-wrapper">
+            <img class="hero__bg-image" src="img/bg.jpg" alt="Resort landscape" />
+        </div>
+        <nav class="navbar" aria-label="Main navigation">
+          <div class="container navbar__container">
+            <a href="index.html" class="navbar__logo-link"><img class="navbar__logo" src="img/Company-logo.svg" alt="Ubuntu Haven Logo" /></a>
+            
+            <button class="mobile-menu-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+
+            <ul class="navbar__menu" role="list">
+              <li><a href="index.html" class="navbar__link">Overview</a></li>
+              <li><a href="accommodation.html" class="navbar__link">Accommodation</a></li>
+              <li><a href="spa.html" class="navbar__link">Spa &amp; Wellness</a></li>
+              <li><a href="recreation.html" class="navbar__link">Recreation</a></li>
+              <li><a href="dining.html" class="navbar__link">Dining</a></li>
+              <li><a href="culture.html" class="navbar__link">Culture &amp; Local Life</a></li>
+              <li><a href="contact.html" class="navbar__link active" aria-current="page">Contact</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="hero__content">
+          <h1 class="hero__title">Get in Touch</h1>
+          <div class="hero__scroll-indicator" aria-hidden="true" style="margin-top: 40px;">
+              <img src="img/frame-152.png" alt="" />
+          </div>
+        </div>
+      </header>
+
+      <main id="main-content">
+        
+        <!-- 1. BLOG & NEWS (Card Sort Item 1) -->
+        <section class="section">
+            <div class="container">
+                <div style="margin-bottom: 40px; text-align: center;">
+                    <h2 class="text-heading-large primary-color">Blog & News</h2>
+                </div>
+                <div class="overview__text-row">
+                    <!-- News Item 1 -->
+                    <article style="flex: 1; display: flex; flex-direction: column; gap: 16px;">
+                        <img src="img/gallery-6.jpg" alt="Award ceremony" style="width: 100%; height: 300px; object-fit: cover; border-radius: 4px;" />
+                        <h3 class="text-heading-medium">Best Resort Award 2025</h3>
+                        <p class="text-body-large">We are honored to be named the top eco-resort in the Western Cape for the second year running.</p>
+                        <a href="#" class="button-outline" style="align-self: flex-start;">READ MORE</a>
+                    </article>
+                    <!-- News Item 2 -->
+                    <article style="flex: 1; display: flex; flex-direction: column; gap: 16px;">
+                         <img src="img/dining-food.jpg" alt="New seasonal menu" style="width: 100%; height: 300px; object-fit: cover; border-radius: 4px;" />
+                        <h3 class="text-heading-medium">New Seasonal Menu</h3>
+                        <p class="text-body-large">Our head chef introduces a new farm-to-table menu celebrating the harvest of the season.</p>
+                        <a href="#" class="button-outline" style="align-self: flex-start;">READ MORE</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. CONTACT FORM  -->
+        <section class="booking" id="booking">
+          <div class="booking__wrapper">
+            <img class="booking__bg-image" src="img/bg.jpg" alt="" aria-hidden="true" loading="lazy" />
+            
+            <div class="booking__content">
+              <h2 class="text-heading-large white-color centered">Plan Your Getaway Today</h2>
+              
+              <form class="booking-bar h-event" action="/api/check-availability" method="POST">
+                <input type="hidden" class="p-name" value="Resort Stay" />
+
+                <div class="booking-bar__item">
+                  <label for="checkin" class="label-small white-color">Check-in</label>
+                  <div class="booking-bar__input-group dt-start">
+                    <input type="date" id="checkin" name="checkin" class="input-text white-color" required aria-label="Check-in Date" />
+                  </div>
+                </div>
+                
+                <div class="booking-bar__item">
+                  <label for="checkout" class="label-small white-color">Check-out</label>
+                  <div class="booking-bar__input-group dt-end">
+                    <input type="date" id="checkout" name="checkout" class="input-text white-color" required aria-label="Check-out Date" />
+                  </div>
+                </div>
+                
+                <div class="booking-bar__item">
+                  <label for="guests" class="label-small white-color">Number of guests</label>
+                  <div class="booking-bar__input-group">
+                      <select id="guests" name="guests" class="input-text white-color select-reset">
+                          <option value="1">1 Guest</option>
+                          <option value="2">2 Guests</option>
+                          <option value="3">3 Guests</option>
+                          <option value="4">4 Guests</option>
+                          <option value="5">5 Guests</option>
+                      </select>
+                  </div>
+                </div>
+                
+                <button type="submit" class="button-filled">
+                    <span class="button-text-dark">BOOK YOUR STAY</span>
+                    <img class="icon-arrow" src="img/arrow-up-right.svg" alt="" aria-hidden="true" />
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. CUSTOMER SUPPORT (Card Sort Item 3) -->
+        <section class="section h-card">
+            <div class="container centered">
+                <h2 class="text-heading-large primary-color">Customer Support</h2>
+                <div style="margin-top:40px; display:flex; flex-direction:column; gap:20px;">
+                    <p class="text-body-large">
+                        Our dedicated concierge team is available 24/7 to assist with your booking, 
+                        transportation, and any special requirements you may have.
+                    </p>
+                    <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 24px; align-items: center;">
+                        <p class="text-body-large p-name"><strong>Ubuntu Haven Resort</strong></p>
+                        <p class="text-body-large p-adr">
+                            <span class="p-street-address">Sunset Bay</span>, <span class="p-locality">Western Cape</span>, <span class="p-country-name">South Africa</span>
+                        </p>
+                        <p class="text-body-large">
+                            <strong>Tel:</strong> <a href="tel:+27211452525" class="p-tel">+27 211 452 525</a>
+                        </p>
+                        <p class="text-body-large">
+                            <strong>Email:</strong> <a href="mailto:resort@ubuntuhaven.com" class="u-email">resort@ubuntuhaven.com</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. GUEST REVIEWS (Card Sort Item 4 - hReview Microformat) -->
+        <section class="section" style="background-color: var(--gray-50);">
+            <div class="container centered">
+                <h2 class="text-heading-large primary-color">Guest Reviews</h2>
+                <div class="overview__text-row" style="margin-top: 60px;">
+                    
+                    <!-- Review 1 -->
+                    <div class="h-review" style="background: white; padding: 32px; border-radius: 8px; flex: 1; text-align: left;">
+                        <h3 class="p-item h-item p-name" style="display:none;">Ubuntu Haven Resort</h3>
+                        <div class="p-rating" style="color: var(--primary-02); margin-bottom: 16px;">★★★★★</div>
+                        <p class="p-description text-body-large">
+                            "An absolute paradise. The villas are stunning and the staff treated us like family. 
+                            The hiking tour was the highlight of our trip!"
+                        </p>
+                        <p class="p-author h-card text-body-small" style="margin-top: 24px; font-weight: bold;">
+                            - <span class="p-name">Sarah Jenkins</span>, <span class="dt-reviewed">Oct 2024</span>
+                        </p>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="h-review" style="background: white; padding: 32px; border-radius: 8px; flex: 1; text-align: left;">
+                        <h3 class="p-item h-item p-name" style="display:none;">Ubuntu Haven Resort</h3>
+                        <div class="p-rating" style="color: var(--primary-02); margin-bottom: 16px;">★★★★★</div>
+                        <p class="p-description text-body-large">
+                            "The farm-to-table dining experience is world-class. I've never tasted fresher seafood. 
+                            Highly recommend the Sunset Beach Bar."
+                        </p>
+                        <p class="p-author h-card text-body-small" style="margin-top: 24px; font-weight: bold;">
+                            - <span class="p-name">David O'Connor</span>, <span class="dt-reviewed">Nov 2024</span>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+      </main>
+
+      <footer class="footer">
+         <div class="container centered"><p>© 2025 Ubuntu Haven. Student Project.</p></div>
+      </footer>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Recreation | Ubuntu Haven Resort</title>
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" href="styleguide.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="student-banner" role="alert">EDUCATIONAL PURPOSES ONLY. NOT A REAL RESORT.</div>
+    
+    <div class="layout-frame">
+      <a href="#main-content" class="skip-link">Skip to content</a>
+      
+      <header class="hero">
+        <div class="hero__bg-wrapper">
+            <img class="hero__bg-image" src="img/image.png" alt="Diving underwater adventure" />
+        </div>
+        <nav class="navbar" aria-label="Main navigation">
+          <div class="container navbar__container">
+            <a href="index.html" class="navbar__logo-link"><img class="navbar__logo" src="img/Company-logo.svg" alt="Ubuntu Haven Logo" /></a>
+            
+            <button class="mobile-menu-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+
+            <ul class="navbar__menu" role="list">
+              <li><a href="index.html" class="navbar__link">Overview</a></li>
+              <li><a href="accommodation.html" class="navbar__link">Accommodation</a></li>
+              <li><a href="spa.html" class="navbar__link">Spa &amp; Wellness</a></li>
+              <li><a href="recreation.html" class="navbar__link active" aria-current="page">Recreation</a></li>
+              <li><a href="dining.html" class="navbar__link">Dining</a></li>
+              <li><a href="culture.html" class="navbar__link">Culture &amp; Local Life</a></li>
+              <li><a href="contact.html" class="navbar__link">Contact</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="hero__content">
+          <p class="hero__subtitle">ADVENTURE AWAITS</p>
+          <h1 class="hero__title">Explore the Island</h1>
+          <div class="hero__scroll-indicator" aria-hidden="true" style="margin-top: 40px;">
+              <img src="img/frame-152.png" alt="" />
+          </div>
+        </div>
+      </header>
+
+      <main id="main-content">
+        <section class="section">
+          <div class="container">
+            
+            <!--  HIKING TOURS  -->
+            <article class="feature-row">
+                <img class="feature-row__img" src="img/image-5.png" alt="Group trekking in green forest" />
+                <div class="feature-row__content">
+                    <h2 class="text-heading-large primary-color">Hiking Tours</h2>
+                    <p class="text-body-large">
+                        Discover the island's hidden gems on foot. Our guided Nature Serenity Trek 
+                        takes you through lush rainforest trails, leading to panoramic viewpoints 
+                        that overlook the entire bay.
+                    </p>
+                    <p class="text-body-large"><strong>Duration:</strong> 3 Hours (Morning/Afternoon)</p>
+                    <a href="contact.html" class="button-outline">BOOK HIKE</a>
+                </div>
+            </article>
+
+            <!--  DIVING & SNORKELING  -->
+            <article class="feature-row">
+                <img class="feature-row__img" src="img/image.png" alt="Diver swimming near coral reef" />
+                <div class="feature-row__content">
+                    <h2 class="text-heading-large primary-color">Diving & Snorkeling</h2>
+                    <p class="text-body-large">
+                        Bataxhana Island features seven premier dive sites showcasing spectacular 
+                        coral reefs and a rich marine ecosystem. Equipment and PADI certified 
+                        instructors are available for all skill levels.
+                    </p>
+                    <a href="contact.html" class="button-outline">VIEW DIVE SPOTS</a>
+                </div>
+            </article>
+
+            <!-- BOAT TRIPS  -->
+            <article class="feature-row">
+                <img class="feature-row__img" src="img/image-25.png" alt="Dolphins jumping at sunrise" />
+                <div class="feature-row__content">
+                    <h2 class="text-heading-large primary-color">Boat Trips</h2>
+                    <p class="text-body-large">
+                        Set sail on the open ocean. Choose between our romantic sunset cruises 
+                        complete with champagne, or our morning Dolphin Watching excursions to 
+                        see the pods play in Davina Bay.
+                    </p>
+                    <a href="contact.html" class="button-outline">CHECK SCHEDULE</a>
+                </div>
+            </article>
+
+            <!--  CULTURAL WORKSHOPS  -->
+            <article class="feature-row">
+                <img class="feature-row__img" src="img/gallery-5.jpg" alt="Local village crafting" />
+                <div class="feature-row__content">
+                    <h2 class="text-heading-large primary-color">Cultural Workshops</h2>
+                    <p class="text-body-large">
+                        Immerse yourself in local traditions. Participate in pottery making, 
+                        traditional weaving classes, or learn to cook regional dishes with 
+                        our local chefs using fresh ingredients.
+                    </p>
+                    <div class="amenities-grid" style="margin: 0; width: 100%; grid-template-columns: 1fr 1fr;">
+                        <div class="amenity-item" style="padding: 16px;"><h3 class="text-body-small">Pottery</h3></div>
+                        <div class="amenity-item" style="padding: 16px;"><h3 class="text-body-small">Cooking</h3></div>
+                    </div>
+                </div>
+            </article>
+
+            <!--  KID'S ZONE -->
+            <article class="feature-row">
+                <img class="feature-row__img" src="img/gallery-2.jpg" alt="Kids playing in safe pool area" />
+                <div class="feature-row__content">
+                    <h2 class="text-heading-large primary-color">Kid's Zone</h2>
+                    <p class="text-body-large">
+                        A safe and fun environment for our younger guests. The Kid's Zone offers 
+                        supervised activities including treasure hunts, arts & crafts, and a 
+                        shallow splash pool, giving parents time to relax.
+                    </p>
+                    <p class="text-body-large"><strong>Ages:</strong> 4 - 12 Years</p>
+                    <a href="contact.html" class="button-outline">LEARN MORE</a>
+                </div>
+            </article>
+
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+         <div class="container centered"><p>© 2025 Ubuntu Haven. Student Project.</p></div>
+      </footer>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

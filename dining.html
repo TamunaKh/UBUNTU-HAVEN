@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dining | Ubuntu Haven Resort</title>
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" href="styleguide.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="student-banner" role="alert">EDUCATIONAL PURPOSES ONLY. NOT A REAL RESORT.</div>
+    
+    <div class="layout-frame">
+      <a href="#main-content" class="skip-link">Skip to content</a>
+      
+      <header class="hero">
+        <div class="hero__bg-wrapper">
+            <img class="hero__bg-image" src="img/dining-food.jpg" alt="Fine dining dish" />
+        </div>
+        <nav class="navbar" aria-label="Main navigation">
+          <div class="container navbar__container">
+            <a href="index.html" class="navbar__logo-link"><img class="navbar__logo" src="img/Company-logo.svg" alt="Ubuntu Haven Logo" /></a>
+            
+            <button class="mobile-menu-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+
+            <ul class="navbar__menu" role="list">
+              <li><a href="index.html" class="navbar__link">Overview</a></li>
+              <li><a href="accommodation.html" class="navbar__link">Accommodation</a></li>
+              <li><a href="spa.html" class="navbar__link">Spa &amp; Wellness</a></li>
+              <li><a href="recreation.html" class="navbar__link">Recreation</a></li>
+              <li><a href="dining.html" class="navbar__link active" aria-current="page">Dining</a></li>
+              <li><a href="culture.html" class="navbar__link">Culture &amp; Local Life</a></li>
+              <li><a href="contact.html" class="navbar__link">Contact</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="hero__content">
+          <p class="hero__subtitle">TASTE OF THE REGION</p>
+          <h1 class="hero__title">Farm to Table</h1>
+          <div class="hero__scroll-indicator" aria-hidden="true" style="margin-top: 40px;">
+              <img src="img/frame-152.png" alt="" />
+          </div>
+        </div>
+      </header>
+
+      <main id="main-content">
+        <section class="section">
+          <div class="container dining__container">
+            
+            <div class="dining__text-group">
+                <h2 class="text-heading-large primary-color">Culinary Excellence</h2>
+                <p class="text-body-large">
+                  Dining at Ubuntu Haven celebrates the heart of South African cuisine. 
+                  80% of our ingredients are sourced from our on-site gardens or local farmers, 
+                  ensuring every bite is fresh and sustainable.
+                </p>
+            </div>
+
+            <!--  RESTAURANTS  -->
+            <article class="feature-row" style="margin-top:60px;">
+                <img class="feature-row__img" src="img/dining-interior.jpg" alt="Main restaurant interior" />
+                <div class="feature-row__content">
+                    <h2 class="text-heading-medium primary-color">Restaurants</h2>
+                    <p class="text-body-large">
+                        <strong>The Ubuntu Main House:</strong> Our flagship restaurant offering 
+                        fine dining with a twist. Enjoy breakfast, lunch, and dinner in a setting 
+                        that blends rustic charm with modern elegance.
+                    </p>
+                    <a href="contact.html" class="button-outline">RESERVE TABLE</a>
+                </div>
+            </article>
+
+            <!--  BEACH BAR  -->
+            <article class="feature-row">
+                <img class="feature-row__img" src="img/gallery-3.jpg" alt="Sunset view over ocean" />
+                <div class="feature-row__content">
+                    <h2 class="text-heading-medium primary-color">Beach Bar</h2>
+                    <p class="text-body-large">
+                        <strong>Sunset Lounge:</strong> Barefoot luxury at its best. Located right 
+                        on the sand, enjoy signature cocktails, craft beers, and light tapas 
+                        while watching the sun dip below the horizon.
+                    </p>
+                    <p class="text-body-large"><strong>Happy Hour:</strong> 17:00 - 19:00 Daily</p>
+                </div>
+            </article>
+
+            <!--  LOCAL CUISINE  -->
+            <article class="feature-row">
+                <img class="feature-row__img" src="img/dining-food.jpg" alt="Regional spice dish" />
+                <div class="feature-row__content">
+                    <h2 class="text-heading-medium primary-color">Local Cuisine</h2>
+                    <p class="text-body-large">
+                        Experience the authentic flavors of the Western Cape. Our seasonal menus 
+                        feature Cape Malay curries, fresh line fish, and traditional 'Braai' 
+                        (barbecue) nights under the stars.
+                    </p>
+                    <a href="contact.html" class="button-outline">VIEW SAMPLE MENU</a>
+                </div>
+            </article>
+
+            <!--SPECIAL EVENTS  -->
+            <article class="feature-row">
+                <img class="feature-row__img" src="img/dining-toast.jpg" alt="Celebration toast" />
+                <div class="feature-row__content">
+                    <h2 class="text-heading-medium primary-color">Special Events</h2>
+                    <p class="text-body-large">
+                        From intimate private dining in our wine cellar to grand wedding celebrations 
+                        on the lawn. We curate bespoke culinary experiences for your most memorable moments.
+                    </p>
+                    <div class="amenities-grid" style="margin: 0; width: 100%; grid-template-columns: 1fr 1fr;">
+                        <div class="amenity-item" style="padding: 16px;"><h3 class="text-body-small">Private Dining</h3></div>
+                        <div class="amenity-item" style="padding: 16px;"><h3 class="text-body-small">Wine Tasting</h3></div>
+                    </div>
+                </div>
+            </article>
+            
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+         <div class="container centered"><p>© 2025 Ubuntu Haven. Student Project.</p></div>
+      </footer>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
