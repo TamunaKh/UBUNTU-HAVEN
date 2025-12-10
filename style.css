@@ -723,7 +723,7 @@ p, a, li, span, label, input, select, button, textarea, td, th {
   padding: 0 20px; 
 }
 
-@media (min-width: 1024px) { 
+@media (min-width: 768px) { 
     .footer__nav-wrapper { 
       display: flex; 
       flex: 2;
@@ -1082,4 +1082,8 @@ p, a, li, span, label, input, select, button, textarea, td, th {
 
 .footer__list {
     list-style: none; 
+    padding: 0;
+}
+.footer__logo {
+    width: 100%;
 }
