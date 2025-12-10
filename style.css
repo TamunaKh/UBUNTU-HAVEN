@@ -718,8 +718,7 @@ p, a, li, span, label, input, select, button, textarea, td, th {
   } 
 }
 
-.footer__logo-area, 
-.footer__nav-wrapper { 
+.footer__logo-area, .footer__nav-wrapper { 
   flex: 1; 
   padding: 0 20px; 
 }
@@ -729,8 +728,7 @@ p, a, li, span, label, input, select, button, textarea, td, th {
       display: flex; 
       flex: 2;
     } 
-    .footer__col, 
-    .footer__col-contact { 
+    .footer__col, .footer__col-contact { 
       flex: 1; 
       padding: 40px; 
       border-left: 1px solid var(--gray-300);
@@ -1080,4 +1078,8 @@ p, a, li, span, label, input, select, button, textarea, td, th {
 
 .footer__text-small {
     color: var(--gray-700);
+}
+
+.footer__list {
+    list-style: none; 
 }
