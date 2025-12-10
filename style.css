@@ -1086,4 +1086,5 @@ p, a, li, span, label, input, select, button, textarea, td, th {
 }
 .footer__logo {
     width: 100%;
+    max-width: 800px;
 }
