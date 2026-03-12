@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO bookings (user_id, room_type, check_in, check_out, guests, status) 
                 VALUES (?, ?, ?, ?, ?, 'pending')";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$user_id, $room_type, $check_in, $checkout, $guests]);
+        $stmt->execute([$user_id, $room_type, $check_in, $check_out, $guests]);
 
         header("Location: user_portal.php#bookings-section");
         exit();
