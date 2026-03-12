@@ -41,7 +41,7 @@ include 'includes/header.php';
                         coral reefs and a rich marine ecosystem. Equipment and PADI certified 
                         instructors are available for all skill levels.
                     </p>
-                    <a href="contact.php" class="button-outline">VIEW DIVE SPOTS</a>
+                    <a href="img/dive_sites.png" target="_blank" class="button-outline">VIEW DIVE SPOTS</a>
                 </div>
             </article>
 
