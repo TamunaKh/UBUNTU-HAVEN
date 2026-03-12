@@ -20,10 +20,22 @@ try {
     $total_users = $stmt->fetchColumn();
 } catch (PDOException $e) { $monthly_bookings = 0; $total_users = 0; }
 
+$bookings_per_page = 12; 
+$current_page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($current_page - 1) * $bookings_per_page;
+
 try {
-    $stmt = $pdo->query("SELECT b.*, u.username, u.email FROM bookings b JOIN users u ON b.user_id = u.id ORDER BY b.check_in ASC");
+    $stmtCount = $pdo->query("SELECT COUNT(*) FROM bookings");
+    $total_bookings = $stmtCount->fetchColumn();
+    $total_pages = ceil($total_bookings / $bookings_per_page);
+
+    $sql = "SELECT b.*, u.username, u.email FROM bookings b JOIN users u ON b.user_id = u.id ORDER BY b.id DESC LIMIT $bookings_per_page OFFSET $offset";
+    $stmt = $pdo->query($sql);
     $all_bookings = $stmt->fetchAll();
-} catch (PDOException $e) { $error = "Could not fetch bookings."; }
+    
+} catch (PDOException $e) { 
+    $error = "Could not fetch bookings."; 
+}
 
 try {
     $stmt = $pdo->query("SELECT id, username, email, role, created_at FROM users ORDER BY created_at DESC");
@@ -34,6 +46,11 @@ try {
     $stmt = $pdo->query("SELECT * FROM room_types ORDER BY price_per_night ASC");
     $room_prices = $stmt->fetchAll();
 } catch (PDOException $e) { $price_error = "Could not fetch prices."; }
+
+try {
+    $stmt = $pdo->query("SELECT sb.*, u.username FROM service_bookings sb JOIN users u ON sb.user_id = u.id ORDER BY sb.booking_date ASC, sb.booking_time ASC");
+    $all_services = $stmt->fetchAll();
+} catch (PDOException $e) { $service_error = "Could not fetch services."; }
 ?>
 
       <div class="hero__content">
@@ -93,7 +110,54 @@ try {
                               </tr>
                               <?php endforeach; ?>
                           </table>
+                          </table>
+                          <?php if ($total_pages > 1): ?>
+                          <div style="display: flex; justify-content: center; gap: 8px; margin-top: 24px; padding-top: 16px; border-top: 1px solid #ddd;">
+                              <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                                  <a href="?page=<?php echo $i; ?>" style="padding: 8px 14px; border: 1px solid var(--primary-01); background: <?php echo ($i == $current_page) ? 'var(--primary-01)' : 'transparent'; ?>; color: <?php echo ($i == $current_page) ? 'white' : 'var(--primary-01)'; ?>; text-decoration: none; border-radius: 4px; font-weight: bold; transition: 0.3s;">
+                                      <?php echo $i; ?>
+                                  </a>
+                              <?php endfor; ?>
+                          </div>
+                          <?php endif; ?>
                       <?php else: ?><p>No bookings yet.</p><?php endif; ?>
+                  </div>
+                  <h3 class="text-heading-medium" style="margin-top: 40px; margin-bottom: 16px;">Manage Services & Dining</h3>
+                  <div style="background: #f9f9f9; padding: 24px; border-radius: 8px; overflow-x: auto; margin-bottom: 40px;">
+                      <?php if (isset($service_error)): ?><p style="color: red;"><?php echo $service_error; ?></p>
+                      <?php elseif (count($all_services) > 0): ?>
+                          <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                              <tr style="border-bottom: 2px solid var(--primary-02);">
+                                  <th style="padding: 12px 8px;">Guest</th>
+                                  <th style="padding: 12px 8px;">Service</th>
+                                  <th style="padding: 12px 8px;">Date & Time</th>
+                                  <th style="padding: 12px 8px;">Status</th>
+                                  <th style="padding: 12px 8px;">Actions</th>
+                              </tr>
+                              <?php foreach ($all_services as $srv): ?>
+                              <tr style="border-bottom: 1px solid #ccc;">
+                                  <td style="padding: 12px 8px;"><strong><?php echo htmlspecialchars($srv['username']); ?></strong><br><span style="font-size: 12px; color: #666;"><?php echo htmlspecialchars($srv['guests']); ?> Guests</span></td>
+                                  <td style="padding: 12px 8px;">
+                                      <span style="font-size: 11px; text-transform: uppercase; color: #888;"><?php echo htmlspecialchars($srv['service_type']); ?></span><br>
+                                      <?php echo htmlspecialchars($srv['specific_service']); ?>
+                                  </td>
+                                  <td style="padding: 12px 8px; font-size: 14px;">
+                                      <?php echo date('M d, Y', strtotime($srv['booking_date'])); ?><br>
+                                      <?php echo date('h:i A', strtotime($srv['booking_time'])); ?>
+                                  </td>
+                                  <td style="padding: 12px 8px; font-weight: bold; color: <?php echo ($srv['status'] == 'confirmed') ? 'green' : (($srv['status'] == 'cancelled') ? 'red' : 'orange'); ?>;">
+                                      <?php echo ucfirst(htmlspecialchars($srv['status'])); ?>
+                                  </td>
+                                  <td style="padding: 12px 8px; display: flex; gap: 8px;">
+                                      <?php if ($srv['status'] == 'pending'): ?>
+                                          <form action="update_service_status.php" method="POST" style="margin: 0;"><input type="hidden" name="service_id" value="<?php echo $srv['id']; ?>"><input type="hidden" name="new_status" value="confirmed"><button type="submit" style="background: green; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer;">Approve</button></form>
+                                          <form action="update_service_status.php" method="POST" style="margin: 0;"><input type="hidden" name="service_id" value="<?php echo $srv['id']; ?>"><input type="hidden" name="new_status" value="cancelled"><button type="submit" style="background: red; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer;">Reject</button></form>
+                                      <?php else: ?><span style="color: #999;">Resolved</span><?php endif; ?>
+                                  </td>
+                              </tr>
+                              <?php endforeach; ?>
+                          </table>
+                      <?php else: ?><p>No service bookings yet.</p><?php endif; ?>
                   </div>
               </div>
 

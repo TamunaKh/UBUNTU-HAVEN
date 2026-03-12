@@ -25,7 +25,7 @@ include 'includes/header.php';
                         From Deep Tissue to Hot Stone, our expert therapists use aromatic oils 
                         blended from local indigenous herbs to melt away your stress and tension.
                     </p>
-                    <a href="contact.php" class="button-outline">BOOK TREATMENT</a>
+                    <a href="user_portal.php#book-services" class="button-outline">BOOK TREATMENT</a>
                 </div>
             </article>
 

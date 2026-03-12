@@ -26,7 +26,7 @@ include 'includes/header.php';
                         Our guided open-top jeep tours take you from the coastal cliffs to the 
                         ancient lighthouse, offering panoramic views and rich storytelling.
                     </p>
-                    <a href="contact.php" class="button-outline">BOOK TOUR</a>
+                    <a href="user_portal.php#book-services" class="button-outline">BOOK TOUR</a>
                 </div>
             </article>
 

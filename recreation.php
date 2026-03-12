@@ -27,7 +27,7 @@ include 'includes/header.php';
                         that overlook the entire bay.
                     </p>
                     <p class="text-body-large"><strong>Duration:</strong> 3 Hours (Morning/Afternoon)</p>
-                    <a href="contact.php" class="button-outline">BOOK HIKE</a>
+                    <a href="user_portal.php#book-services" class="button-outline">BOOK HIKE</a>
                 </div>
             </article>
 
@@ -55,7 +55,7 @@ include 'includes/header.php';
                         complete with champagne, or our morning Dolphin Watching excursions to 
                         see the pods play in Davina Bay.
                     </p>
-                    <a href="contact.php" class="button-outline">CHECK SCHEDULE</a>
+                    <a href="user_portal.php#book-services" class="button-outline">CHECK SCHEDULE</a>
                 </div>
             </article>
 

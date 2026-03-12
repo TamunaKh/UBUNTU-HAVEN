@@ -32,6 +32,13 @@ try {
 } catch (PDOException $e) {
     $gallery_error = "Could not fetch photos: " . $e->getMessage();
 }
+try {
+    $stmt = $pdo->prepare("SELECT * FROM service_bookings WHERE user_id = ? ORDER BY booking_date ASC, booking_time ASC");
+    $stmt->execute([$user_id]);
+    $service_bookings = $stmt->fetchAll();
+} catch (PDOException $e) {
+    $service_error = "Could not fetch your activity bookings.";
+}
 ?>
 
         <div class="hero__content">
@@ -86,6 +93,70 @@ try {
                         <p style="color: green; margin-top: 16px; font-weight: bold;">Booking requested successfully! Awaiting admin approval.</p>
                     <?php endif; ?>
                 </div>
+                <div id="book-services" style="scroll-margin-top: 120px; flex: 100%; margin-bottom: 30px; width: 100%;">
+                    <h3 class="text-heading-medium" style="margin-bottom: 16px;">Book Resort Services</h3>
+                    
+                    <?php if(isset($_GET['service']) && $_GET['service'] == 'success'): ?>
+                        <div style="background: #2e7d32; color: white; padding: 12px; border-radius: 4px; margin-bottom: 16px; font-weight: bold;">Service requested successfully! Awaiting admin approval.</div>
+                    <?php endif; ?>
+
+                    <div style="display: flex; flex-wrap: wrap; gap: 24px;">
+                        
+                        <div style="flex: 1; min-width: 280px; background: #262626; padding: 24px; border-radius: 8px; border-top: 4px solid #F4D03F;">
+                            <h4 style="color: white; margin-bottom: 16px; font-size: 18px;">Spa & Wellness</h4>
+                            <form action="process_service.php" method="POST" style="display: flex; flex-direction: column; gap: 12px;">
+                                <input type="hidden" name="service_type" value="Spa">
+                                <select name="specific_service" required style="padding: 10px; background: #333; color: white; border: 1px solid #4a4a4a; border-radius: 4px;">
+                                    <option value="" disabled selected>Select Therapy...</option>
+                                    <option value="Swedish Massage">Swedish Massage</option>
+                                    <option value="Deep Tissue Massage">Deep Tissue Massage</option>
+                                    <option value="Hot Stone Therapy">Hot Stone Therapy</option>
+                                </select>
+                                <div style="display: flex; gap: 10px;">
+                                    <input type="date" name="booking_date" min="<?php echo date('Y-m-d'); ?>" required style="flex: 1; padding: 10px; background: #333; color: white; border: 1px solid #4a4a4a; border-radius: 4px; color-scheme: dark;">
+                                    <input type="time" name="booking_time" required style="flex: 1; padding: 10px; background: #333; color: white; border: 1px solid #4a4a4a; border-radius: 4px; color-scheme: dark;">
+                                </div>
+                                <input type="number" name="guests" min="1" max="2" placeholder="Guests (1-2)" required style="padding: 10px; background: #333; color: white; border: 1px solid #4a4a4a; border-radius: 4px;">
+                                <button type="submit" style="background: var(--primary-01); color: white; padding: 10px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">Book Spa</button>
+                            </form>
+                        </div>
+
+                        <div style="flex: 1; min-width: 280px; background: #262626; padding: 24px; border-radius: 8px; border-top: 4px solid #F4D03F;">
+                            <h4 style="color: white; margin-bottom: 16px; font-size: 18px;">Tours & Recreation</h4>
+                            <form action="process_service.php" method="POST" style="display: flex; flex-direction: column; gap: 12px;">
+                                <input type="hidden" name="service_type" value="Tour">
+                                <select name="specific_service" required style="padding: 10px; background: #333; color: white; border: 1px solid #4a4a4a; border-radius: 4px;">
+                                    <option value="" disabled selected>Select Activity...</option>
+                                    <option value="Guided Mountain Hike">Guided Mountain Hike</option>
+                                    <option value="Sunset Boat Trip">Sunset Boat Trip</option>
+                                    <option value="City Sightseeing Tour">City Sightseeing Tour</option>
+                                </select>
+                                <div style="display: flex; gap: 10px;">
+                                    <input type="date" name="booking_date" min="<?php echo date('Y-m-d'); ?>" required style="flex: 1; padding: 10px; background: #333; color: white; border: 1px solid #4a4a4a; border-radius: 4px; color-scheme: dark;">
+                                    <input type="time" name="booking_time" required style="flex: 1; padding: 10px; background: #333; color: white; border: 1px solid #4a4a4a; border-radius: 4px; color-scheme: dark;">
+                                </div>
+                                <input type="number" name="guests" min="1" max="10" placeholder="Number of Guests" required style="padding: 10px; background: #333; color: white; border: 1px solid #4a4a4a; border-radius: 4px;">
+                                <button type="submit" style="background: var(--primary-01); color: white; padding: 10px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">Book Activity</button>
+                            </form>
+                        </div>
+
+                        <div style="flex: 1; min-width: 280px; background: #262626; padding: 24px; border-radius: 8px; border-top: 4px solid #F4D03F;">
+                            <h4 style="color: white; margin-bottom: 16px; font-size: 18px;">Dining Reservation</h4>
+                            <form action="process_service.php" method="POST" style="display: flex; flex-direction: column; gap: 12px;">
+                                <input type="hidden" name="service_type" value="Dining">
+                                <input type="hidden" name="specific_service" value="Table Reservation">
+                                <div style="padding: 10px; background: #333; color: white; border: 1px solid #4a4a4a; border-radius: 4px; text-align: center; color: #aaa;">Main Restaurant</div>
+                                <div style="display: flex; gap: 10px;">
+                                    <input type="date" name="booking_date" min="<?php echo date('Y-m-d'); ?>" required style="flex: 1; padding: 10px; background: #333; color: white; border: 1px solid #4a4a4a; border-radius: 4px; color-scheme: dark;">
+                                    <input type="time" name="booking_time" min="17:00" max="22:00" required style="flex: 1; padding: 10px; background: #333; color: white; border: 1px solid #4a4a4a; border-radius: 4px; color-scheme: dark;">
+                                </div>
+                                <input type="number" name="guests" min="1" max="12" placeholder="Table for how many?" required style="padding: 10px; background: #333; color: white; border: 1px solid #4a4a4a; border-radius: 4px;">
+                                <button type="submit" style="background: var(--primary-01); color: white; padding: 10px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">Reserve Table</button>
+                            </form>
+                        </div>
+
+                 </div>
+</div>
                 <div style="flex: 2; min-width: 300px; background: #f9f9f9; padding: 24px; border-radius: 8px;">
                     <h3 class="text-heading-medium" style="margin-bottom: 16px;">My Bookings</h3>
                     
@@ -129,6 +200,50 @@ try {
                     <?php else: ?>
                         <p>You have no upcoming stays. <a href="accommodation.php" style="color: var(--primary-02);">Book a room today!</a></p>
                     <?php endif; ?>
+                    <h4 style="margin-top: 40px; margin-bottom: 16px; font-size: 18px; color: #333; border-bottom: 2px solid var(--primary-02); padding-bottom: 8px;">My Activities & Dining</h4>
+            
+            <?php if (isset($service_error)): ?>
+                <p style="color: red;"><?php echo $service_error; ?></p>
+            <?php elseif (!empty($service_bookings)): ?>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
+                        <tr style="border-bottom: 2px solid #ddd;">
+                            <th style="padding: 12px 8px; color: #666; text-transform: uppercase; font-size: 12px;">Type</th>
+                            <th style="padding: 12px 8px; color: #666; text-transform: uppercase; font-size: 12px;">Detail</th>
+                            <th style="padding: 12px 8px; color: #666; text-transform: uppercase; font-size: 12px;">Date & Time</th>
+                            <th style="padding: 12px 8px; color: #666; text-transform: uppercase; font-size: 12px;">Guests</th>
+                            <th style="padding: 12px 8px; color: #666; text-transform: uppercase; font-size: 12px;">Status</th>
+                            <th style="padding: 12px 8px; color: #666; text-transform: uppercase; font-size: 12px;">Action</th>
+                        </tr>
+                        <?php foreach ($service_bookings as $srv): ?>
+                        <tr style="border-bottom: 1px solid #eee;">
+                            <td style="padding: 12px 8px;"><strong><?php echo htmlspecialchars($srv['service_type']); ?></strong></td>
+                            <td style="padding: 12px 8px;"><?php echo htmlspecialchars($srv['specific_service']); ?></td>
+                            <td style="padding: 12px 8px;">
+                                <?php echo date('M d, Y', strtotime($srv['booking_date'])); ?> <br>
+                                <span style="color: #888; font-size: 12px;"><?php echo date('h:i A', strtotime($srv['booking_time'])); ?></span>
+                            </td>
+                            <td style="padding: 12px 8px; text-align: center;"><?php echo htmlspecialchars($srv['guests']); ?></td>
+                            <td style="padding: 12px 8px; font-weight: bold; color: <?php echo ($srv['status'] == 'confirmed') ? 'green' : (($srv['status'] == 'cancelled') ? 'red' : 'orange'); ?>;">
+                                <?php echo ucfirst(htmlspecialchars($srv['status'])); ?>
+                            </td>
+                            <td style="padding: 12px 8px;">
+                                <?php if ($srv['status'] == 'pending'): ?>
+                                    <form action="cancel_service.php" method="POST" onsubmit="return confirm('Cancel this booking?');" style="margin: 0;">
+                                        <input type="hidden" name="service_id" value="<?php echo $srv['id']; ?>">
+                                        <button type="submit" style="background: transparent; border: 1px solid red; color: red; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 12px;">Cancel</button>
+                                    </form>
+                                <?php else: ?>
+                                    <span style="color: #ccc;">-</span>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+            <?php else: ?>
+                <p style="color: #666; font-size: 14px; font-style: italic;">You haven't booked any spa treatments, dining, or tours yet.</p>
+            <?php endif; ?>
                 </div>
 
                 <div style="flex: 1; min-width: 250px; display: flex; flex-direction: column; gap: 24px;">

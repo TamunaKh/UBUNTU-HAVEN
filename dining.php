@@ -35,7 +35,7 @@ include 'includes/header.php';
                         fine dining with a twist. Enjoy breakfast, lunch, and dinner in a setting 
                         that blends rustic charm with modern elegance.
                     </p>
-                    <a href="contact.php" class="button-outline">RESERVE TABLE</a>
+                    <a href="user_portal.php#book-services" class="button-outline">RESERVE TABLE</a>
                 </div>
             </article>
 
@@ -63,7 +63,7 @@ include 'includes/header.php';
                         feature Cape Malay curries, fresh line fish, and traditional 'Braai' 
                         (barbecue) nights under the stars.
                     </p>
-                    <a href="contact.php" class="button-outline">VIEW SAMPLE MENU</a>
+                    <a href="sample_menu.php" class="button-outline">VIEW SAMPLE MENU</a>
                 </div>
             </article>
 
