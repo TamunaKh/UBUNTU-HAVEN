@@ -13,6 +13,17 @@ include '../includes/header.php';
             <h2 class="text-heading-large primary-color">Sign In</h2>
             <p class="text-body-large" style="margin-bottom: 24px;">Please enter your credentials to access your portal.</p>
             
+            <?php if(isset($_GET['success']) && $_GET['success'] == 'registered'): ?>
+                <div style="background: #2e7d32; color: white; padding: 15px; border-radius: 4px; margin-bottom: 20px; text-align: center;">
+                    Registration successful! Please login below.
+                </div>
+            <?php endif; ?>
+
+            <?php if(isset($_GET['error']) && $_GET['error'] == 'invalid'): ?>
+                <div style="background: #d32f2f; color: white; padding: 12px; border-radius: 4px; margin-bottom: 20px; text-align: center; font-size: 14px; font-weight: bold; border: 1px solid #b71c1c;">
+                    Invalid email or password. Please try again.
+                </div>
+            <?php endif; ?>
             <form action="process_login.php" method="POST" style="display: flex; flex-direction: column; gap: 16px;">
                 <input type="email" name="email" placeholder="Email Address" required style="padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-family: var(--font-family-body);">
                 <input type="password" name="password" placeholder="Password" required style="padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-family: var(--font-family-body);">

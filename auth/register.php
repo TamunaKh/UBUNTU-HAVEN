@@ -12,7 +12,14 @@ include '../includes/header.php';
         <div class="container" style="max-width: 500px; margin: 0 auto; text-align: center;">
             <h2 class="text-heading-large primary-color">Create Account</h2>
             <p class="text-body-large" style="margin-bottom: 24px;">Sign up to book your stay and manage reservations.</p>
-            
+            <?php if(isset($_GET['error'])): ?>
+                <div style="background: #d32f2f; color: white; padding: 15px; border-radius: 4px; margin-bottom: 20px; text-align: center;">
+                    <?php 
+                        if($_GET['error'] == 'exists') echo "Username or Email already exists.";
+                        else echo "An error occurred. Please try again.";
+                    ?>
+                </div>
+            <?php endif; ?>
             <form action="process_register.php" method="POST" style="display: flex; flex-direction: column; gap: 16px;">
                 <input type="text" name="username" placeholder="Choose Username" required style="padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-family: var(--font-family-body);">
                 <input type="email" name="email" placeholder="Email Address" required style="padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-family: var(--font-family-body);">

@@ -51,12 +51,13 @@ try {
 
           <div style="display: flex; gap: 24px; margin-bottom: 40px; flex-wrap: wrap;">
               <div style="flex: 1; min-width: 200px; background: #1a1a1a; padding: 32px; border-radius: 8px; text-align: center; border-bottom: 4px solid var(--primary-01); box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                  <h3 style="font-size: 13px; color: #e0e0e0; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; font-family: var(--font-family-body);">Monthly Bookings</h3>
-                  <p style="font-size: 64px; font-weight: 800; margin-top: 16px; color: var(--primary-01); font-family: var(--font-family-heading); line-height: 1; text-shadow: 0 2px 4px rgba(0,0,0,0.5);"><?php echo $monthly_bookings; ?></p>
+                  <h3 style="font-size: 13px; color: #ffffff; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; font-family: var(--font-family-body);">Monthly Bookings</h3>
+                  <p style="font-size: 64px; font-weight: 800; margin-top: 16px; color: #F4D03F; font-family: var(--font-family-heading); line-height: 1;"><?php echo $monthly_bookings; ?></p>
               </div>
+              
               <div style="flex: 1; min-width: 200px; background: #1a1a1a; padding: 32px; border-radius: 8px; text-align: center; border-bottom: 4px solid var(--primary-01); box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                  <h3 style="font-size: 13px; color: #e0e0e0; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; font-family: var(--font-family-body);">Total Registered Users</h3>
-                  <p style="font-size: 64px; font-weight: 800; margin-top: 16px; color: var(--primary-01); font-family: var(--font-family-heading); line-height: 1; text-shadow: 0 2px 4px rgba(0,0,0,0.5);"><?php echo $total_users; ?></p>
+                  <h3 style="font-size: 13px; color: #ffffff; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; font-family: var(--font-family-body);">Total Registered Users</h3>
+                  <p style="font-size: 64px; font-weight: 800; margin-top: 16px; color: #F4D03F; font-family: var(--font-family-heading); line-height: 1;"><?php echo $total_users; ?></p>
               </div>
           </div>
           

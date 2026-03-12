@@ -55,7 +55,7 @@ include 'includes/header.php';
                         or find your center in our guided meditation classes held in the forest sanctuary.
                     </p>
                     <p class="text-body-large"><strong>Schedule:</strong> Daily at 07:00 and 17:00</p>
-                    <a href="contact.php" class="button-outline">VIEW SCHEDULE</a>
+                    <!-- <a href="contact.php" class="button-outline">VIEW SCHEDULE</a> -->
                 </div>
             </article>
 

@@ -54,7 +54,7 @@ include 'includes/header.php';
                         walk from the resort, the museum houses artifacts, photographs, and 
                         tools that chronicle the lives of the island's first settlers.
                     </p>
-                    <a href="contact.php" class="button-outline">VIEW EXHIBITS</a>
+                    <!-- <a href="contact.php" class="button-outline">VIEW EXHIBITS</a> -->
                 </div>
             </article>
 

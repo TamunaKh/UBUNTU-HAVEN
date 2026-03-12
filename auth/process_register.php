@@ -13,13 +13,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$user, $email, $hashed_password]);
 
-        echo "Registration successful! <a href='login.php'>Login here</a>";
+        header("Location: login.php?success=registered");
+        exit();
+
     } catch (PDOException $e) {
         if ($e->getCode() == 23000) {
-            echo "Username or Email already exists.";
+            header("Location: register.php?error=exists");
         } else {
-            echo "Error: " . $e->getMessage();
+            header("Location: register.php?error=unknown");
         }
+        exit();
     }
 }
 ?>
