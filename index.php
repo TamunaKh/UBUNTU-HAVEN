@@ -181,39 +181,39 @@ include 'includes/header.php';
               
               <form action="process_booking.php" method="POST" style="display: flex; flex-wrap: wrap; background: #1a1a1a; border-radius: 4px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); width: 100%; align-items: stretch;">
     
-    <div style="flex: 1.5; min-width: 200px; padding: 16px 24px; border-right: 1px solid #333;">
-        <label style="display: block; font-size: 11px; color: #999; margin-bottom: 8px; letter-spacing: 1px; text-transform: uppercase;">Room Type</label>
-        <select name="room_type" required style="width: 100%; background: transparent; color: white; border: none; outline: none; font-size: 16px; font-family: var(--font-family-body); cursor: pointer; appearance: auto;">
-            <option value="" disabled selected style="color: #999;">Select a room...</option>
-            <option value="Standard Room" style="color: black;">Standard Room</option>
-            <option value="Deluxe Room" style="color: black;">Deluxe Room</option>
-            <option value="Ocean View Suite" style="color: black;">Ocean View Suite</option>
-            <option value="Garden Villa" style="color: black;">Garden Villa</option>
-            <option value="Luxury Villa" style="color: black;">Luxury Villa</option>
-            <option value="Presidential Suite" style="color: black;">Presidential Suite</option>
-        </select>
-    </div>
+                <div style="flex: 1.5; min-width: 200px; padding: 16px 24px; border-right: 1px solid #333;">
+                    <label style="display: block; font-size: 11px; color: #999; margin-bottom: 8px; letter-spacing: 1px; text-transform: uppercase;">Room Type</label>
+                    <select name="room_type" required style="width: 100%; background: transparent; color: white; border: none; outline: none; font-size: 16px; font-family: var(--font-family-body); cursor: pointer; appearance: auto;">
+                        <option value="" disabled selected style="color: #999;">Select a room...</option>
+                        <option value="Standard Room" style="color: black;">Standard Room</option>
+                        <option value="Deluxe Room" style="color: black;">Deluxe Room</option>
+                        <option value="Ocean View Suite" style="color: black;">Ocean View Suite</option>
+                        <option value="Garden Villa" style="color: black;">Garden Villa</option>
+                        <option value="Luxury Villa" style="color: black;">Luxury Villa</option>
+                        <option value="Presidential Suite" style="color: black;">Presidential Suite</option>
+                    </select>
+                </div>
 
-    <div style="flex: 1; min-width: 150px; padding: 16px 24px; border-right: 1px solid #333;">
-        <label style="display: block; font-size: 11px; color: #999; margin-bottom: 8px; letter-spacing: 1px; text-transform: uppercase;">Check-In</label>
-        <input type="date" name="check_in" min="<?php echo date('Y-m-d'); ?>" required style="width: 100%; background: transparent; color: white; border: none; outline: none; font-size: 16px; font-family: var(--font-family-body); color-scheme: dark;">
-    </div>
+                <div style="flex: 1; min-width: 150px; padding: 16px 24px; border-right: 1px solid #333;">
+                    <label style="display: block; font-size: 11px; color: #999; margin-bottom: 8px; letter-spacing: 1px; text-transform: uppercase;">Check-In</label>
+                    <input type="date" name="check_in" min="<?php echo date('Y-m-d'); ?>" required style="width: 100%; background: transparent; color: white; border: none; outline: none; font-size: 16px; font-family: var(--font-family-body); color-scheme: dark;">
+                </div>
 
-    <div style="flex: 1; min-width: 150px; padding: 16px 24px; border-right: 1px solid #333;">
-        <label style="display: block; font-size: 11px; color: #999; margin-bottom: 8px; letter-spacing: 1px; text-transform: uppercase;">Check-Out</label>
-        <input type="date" name="check_out" min="<?php echo date('Y-m-d', strtotime('+1 day')); ?>" required style="width: 100%; background: transparent; color: white; border: none; outline: none; font-size: 16px; font-family: var(--font-family-body); color-scheme: dark;">
-    </div>
+                <div style="flex: 1; min-width: 150px; padding: 16px 24px; border-right: 1px solid #333;">
+                    <label style="display: block; font-size: 11px; color: #999; margin-bottom: 8px; letter-spacing: 1px; text-transform: uppercase;">Check-Out</label>
+                    <input type="date" name="check_out" min="<?php echo date('Y-m-d', strtotime('+1 day')); ?>" required style="width: 100%; background: transparent; color: white; border: none; outline: none; font-size: 16px; font-family: var(--font-family-body); color-scheme: dark;">
+                </div>
 
-    <div style="flex: 1; min-width: 120px; padding: 16px 24px;">
-        <label style="display: block; font-size: 11px; color: #999; margin-bottom: 8px; letter-spacing: 1px; text-transform: uppercase;">Guests</label>
-        <input type="number" name="guests" min="1" max="10" placeholder="1" required style="width: 100%; background: transparent; color: white; border: none; outline: none; font-size: 16px; font-family: var(--font-family-body);">
-    </div>
+                <div style="flex: 1; min-width: 120px; padding: 16px 24px;">
+                    <label style="display: block; font-size: 11px; color: #999; margin-bottom: 8px; letter-spacing: 1px; text-transform: uppercase;">Guests</label>
+                    <input type="number" name="guests" min="1" max="10" placeholder="1" required style="width: 100%; background: transparent; color: white; border: none; outline: none; font-size: 16px; font-family: var(--font-family-body);">
+                </div>
 
-    <div style="flex: 1.2; min-width: 200px; display: flex;">
-        <button type="submit" style="width: 100%; height: 100%; padding: 16px; background-color: var(--primary-01); color: white; border: none; font-size: 14px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: opacity 0.3s; font-family: var(--font-family-heading);">Book Your Stay</button>
-    </div>
-    
-</form>
+                <div style="flex: 1.2; min-width: 200px; display: flex;">
+                    <button type="submit" style="width: 100%; height: 100%; padding: 16px; background-color: var(--primary-01); color: white; border: none; font-size: 14px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: opacity 0.3s; font-family: var(--font-family-heading);">Book Your Stay</button>
+                </div>
+                
+              </form>
             </div>
           </div>
         </section>

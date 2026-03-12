@@ -1,5 +1,15 @@
-<?php 
-$page_title = 'Accommodation | Ubuntu Haven Resort';
+<?php
+session_start();
+require_once 'db_config.php'; 
+
+try {
+    $stmt = $pdo->query("SELECT * FROM room_types ORDER BY price_per_night ASC");
+    $room_prices = $stmt->fetchAll();
+} catch (PDOException $e) {
+    $room_prices = [];
+}
+
+$page_title = 'Accommodation | Ubuntu Haven';
 $hero_image = 'img/acomm.webp';
 include 'includes/header.php'; 
 ?>
@@ -25,7 +35,7 @@ include 'includes/header.php';
                         Perched on the hillside, each villa features a private infinity pool, 
                         spacious living area, and panoramic views of the ocean.
                     </p>
-                    <p class="price-tag">From R 4,500 / night</p>
+                    <p class="price-tag"></p>
                     <a href="contact.php" class="button-outline">CHECK AVAILABILITY</a>
                 </div>
             </article>
@@ -38,7 +48,7 @@ include 'includes/header.php';
                         Designed for connection, our family suites offer two interconnecting 
                         bedrooms and a large communal deck. Safe for children and relaxing for parents.
                     </p>
-                    <p class="price-tag">From R 6,200 / night</p>
+                    <p class="price-tag"></p>
                     <a href="contact.php" class="button-outline">CHECK AVAILABILITY</a>
                 </div>
             </article>
@@ -52,7 +62,7 @@ include 'includes/header.php';
                         offer a secluded sanctuary surrounded by indigenous plants, featuring a 
                         private patio and an outdoor hammock for lazy afternoons.
                     </p>
-                    <p class="price-tag" style="font-weight: 700; font-size: 20px; color: var(--gray-800);">From R 3,800 / night</p>
+                    <p class="price-tag" style="font-weight: 700; font-size: 20px; color: var(--gray-800);"></p>
                     <a href="contact.php" class="button-outline">CHECK AVAILABILITY</a>
                 </div>
             </article>
@@ -163,21 +173,29 @@ include 'includes/header.php';
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Luxury Villa (Ocean View)</td>
-                            <td>2 Adults</td>
-                            <td class="price-tag">R 4,500</td>
-                        </tr>
-                        <tr>
-                            <td>Garden Villa</td>
-                            <td>2 Adults</td>
-                            <td class="price-tag">R 3,800</td>
-                        </tr>
-                        <tr>
-                            <td>Family Suite</td>
-                            <td>2 Adults, 2 Kids</td>
-                            <td class="price-tag">R 6,200</td>
-                        </tr>
+                        <?php if (!empty($room_prices)): ?>
+                            <?php foreach ($room_prices as $room): ?>
+                                <?php 
+                                    $capacity = '2 Adults';
+                                    if (strpos(strtolower($room['name']), 'presidential') !== false) {
+                                        $capacity = '4 Adults, 2 Kids';
+                                    } elseif (strpos(strtolower($room['name']), 'suite') !== false) {
+                                        $capacity = '2 Adults, 2 Kids';
+                                    } elseif (strpos(strtolower($room['name']), 'villa') !== false) {
+                                        $capacity = '2 Adults, 1 Kid';
+                                    }
+                                ?>
+                                <tr>
+                                    <td><?php echo htmlspecialchars($room['name']); ?></td>
+                                    <td><?php echo $capacity; ?></td>
+                                    <td class="price-tag">R <?php echo number_format($room['price_per_night'], 0); ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="3" style="text-align: center;">Prices are currently unavailable. Please check back later.</td>
+                            </tr>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>
