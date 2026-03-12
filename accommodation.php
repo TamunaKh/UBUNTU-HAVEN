@@ -152,7 +152,7 @@ include 'includes/header.php';
 
             <!-- PRICE LIST TABLE -->
             <div style="margin-top: 90px; width: 100%;">
-                <h2 class="text-heading-medium primary-color">2025 Price List</h2>
+                <h2 class="text-heading-medium primary-color">2026 Price List</h2>
                 <table class="price-table">
                     <caption>All prices are in South African Rand (ZAR) and include tax.</caption>
                     <thead>

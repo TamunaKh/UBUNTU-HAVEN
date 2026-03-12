@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt = $pdo->prepare($sql);
             $stmt->execute([$user_id, $target_path]);
             
-            header("Location: user_portal.php?upload=success");
+            header("Location: user_portal.php?upload=success#gallery-section");
             exit();
         } else {
              header("Location: user_portal.php?upload=move_failed");

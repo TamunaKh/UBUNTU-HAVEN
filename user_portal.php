@@ -44,7 +44,48 @@ try {
             <h2 class="text-heading-large primary-color" style="margin-bottom: 24px;">My Dashboard</h2>
             
             <div style="display: flex; gap: 40px; flex-wrap: wrap;">
-                
+                <div style="flex: 100%; background: #f9f9f9; padding: 24px; border-radius: 8px; margin-bottom: 24px; width: 100%;">
+                    <h3 class="text-heading-medium" style="margin-bottom: 16px;">Book a New Stay</h3>
+                    
+                    <form action="process_booking.php" method="POST" style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end;">
+                        
+                        <div style="display: flex; flex-direction: column; flex: 2; min-width: 150px;">
+                            <label for="room_type" style="margin-bottom: 8px; font-weight: bold; font-size: 14px;">Room Type</label>
+                            <select name="room_type" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-family: var(--font-family-body);">
+                                <option value="" disabled selected>Select a room...</option>
+                                <option value="Standard Room">Standard Room</option>
+                                <option value="Deluxe Room">Deluxe Room</option>
+                                <option value="Ocean View Suite">Ocean View Suite</option>
+                                <option value="Garden Villa">Garden Villa</option>
+                                <option value="Luxury Villa">Luxury Villa</option>
+                                <option value="Presidential Suite">Presidential Suite</option>
+                            </select>
+                        </div>
+
+                        <div style="display: flex; flex-direction: column; flex: 1; min-width: 130px;">
+                            <label for="check_in" style="margin-bottom: 8px; font-weight: bold; font-size: 14px;">Check-In</label>
+                            <input type="date" name="check_in" min="<?php echo date('Y-m-d'); ?>" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-family: var(--font-family-body);">
+                        </div>
+
+                        <div style="display: flex; flex-direction: column; flex: 1; min-width: 130px;">
+                            <label for="check_out" style="margin-bottom: 8px; font-weight: bold; font-size: 14px;">Check-Out</label>
+                            <input type="date" name="check_out" min="<?php echo date('Y-m-d', strtotime('+1 day')); ?>" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-family: var(--font-family-body);">
+                        </div>
+
+                        <div style="display: flex; flex-direction: column; flex: 1; min-width: 80px;">
+                            <label for="guests" style="margin-bottom: 8px; font-weight: bold; font-size: 14px;">Guests</label>
+                            <input type="number" name="guests" min="1" max="10" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-family: var(--font-family-body);">
+                        </div>
+
+                        <div style="flex: 1; min-width: 150px;">
+                            <button type="submit" class="button-outline" style="background-color: var(--primary-01); color: white; width: 100%; justify-content: center; padding: 11px;">Book Now</button>
+                        </div>
+                    </form>
+
+                    <?php if(isset($_GET['booking']) && $_GET['booking'] == 'success'): ?>
+                        <p style="color: green; margin-top: 16px; font-weight: bold;">Booking requested successfully! Awaiting admin approval.</p>
+                    <?php endif; ?>
+                </div>
                 <div style="flex: 2; min-width: 300px; background: #f9f9f9; padding: 24px; border-radius: 8px;">
                     <h3 class="text-heading-medium" style="margin-bottom: 16px;">My Bookings</h3>
                     
@@ -91,15 +132,15 @@ try {
                 </div>
 
                 <div style="flex: 1; min-width: 250px; display: flex; flex-direction: column; gap: 24px;">
-                    <div style="background: #f9f9f9; padding: 24px; border-radius: 8px;">
+                    <div id="bookings-section" style="background: #f9f9f9; padding: 24px; border-radius: 8px;">
                         <h3 class="text-heading-medium" style="margin-bottom: 16px;">Profile Details</h3>
                         <p><strong>Username:</strong> <?php echo htmlspecialchars($_SESSION['username']); ?></p>
                         <p><strong>Account Type:</strong> <?php echo ucfirst(htmlspecialchars($_SESSION['role'])); ?></p>
                         <br>
                         <a href="auth/logout.php" class="button-outline" style="border-color: red; color: red; display: inline-block;">Log Out</a>
                     </div>
-                    
-                    <div style="background: #f9f9f9; padding: 24px; border-radius: 8px;">
+
+                    <div id="reviews-section" style="background: #f9f9f9; padding: 24px; border-radius: 8px;">
                         <h3 class="text-heading-medium" style="margin-bottom: 16px;">Leave a Review</h3>
                         <p style="margin-bottom: 16px;">Tell us about your stay!</p>
                         
@@ -122,7 +163,7 @@ try {
                         <?php endif; ?>
                     </div>
                     
-                    <div style="background: #f9f9f9; padding: 24px; border-radius: 8px;">
+                    <div id="gallery-section" style="background: #f9f9f9; padding: 24px; border-radius: 8px;">
                         <h3 class="text-heading-medium" style="margin-bottom: 16px;">Resort Gallery</h3>
                         <p style="margin-bottom: 16px;">Share your favorite resort memories.</p>
                         
@@ -162,3 +203,4 @@ try {
       </main>
 
 <?php include 'includes/footer.php'; ?>
+<script src="/UBUNTU-HAVEN/script.js"></script>

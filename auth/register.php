@@ -24,3 +24,5 @@ include '../includes/header.php';
       </main>
 
 <?php include '../includes/footer.php'; ?>
+<script src="/UBUNTU-HAVEN/script.js"></script>
+

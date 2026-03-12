@@ -13,17 +13,17 @@ if (!isset($_SESSION['user_id'])) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_id = $_SESSION['user_id'];
     $room_type = $_POST['room_type'];
-    $checkin = $_POST['checkin'];
-    $checkout = $_POST['checkout'];
+    $check_in = $_POST['check_in'];
+    $check_out = $_POST['check_out'];
     $guests = $_POST['guests'];
 
     try {
         $sql = "INSERT INTO bookings (user_id, room_type, check_in, check_out, guests, status) 
                 VALUES (?, ?, ?, ?, ?, 'pending')";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$user_id, $room_type, $checkin, $checkout, $guests]);
+        $stmt->execute([$user_id, $room_type, $check_in, $checkout, $guests]);
 
-        header("Location: user_portal.php");
+        header("Location: user_portal.php#bookings-section");
         exit();
         
     } catch (PDOException $e) {

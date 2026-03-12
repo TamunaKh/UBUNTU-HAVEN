@@ -57,3 +57,23 @@
                 </div>
           </div>
       </footer>
+      <script>
+        document.addEventListener('submit', function() {
+            sessionStorage.setItem('scrollPosition', window.scrollY);
+        });
+
+        window.addEventListener('beforeunload', function() {
+            sessionStorage.setItem('scrollPosition', window.scrollY);
+        });
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const scrollPos = sessionStorage.getItem('scrollPosition');
+            if (scrollPos) {
+            window.scrollTo({
+                top: parseInt(scrollPos),
+                behavior: 'instant'
+            });
+            sessionStorage.removeItem('scrollPosition');
+            }
+        });
+        </script>

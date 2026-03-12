@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['booking_id'])) {
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$booking_id, $user_id]);
 
-        header("Location: user_portal.php");
+        header("Location: user_portal.php#bookings-section");
         exit();
     } catch (PDOException $e) {
         echo "Error cancelling booking: " . $e->getMessage();

@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$user_id, $rating, $comment]);
         
-        header("Location: user_portal.php?review=success");
+        header("Location: user_portal.php?review=success#review-section");
         exit();
     } catch (PDOException $e) {
         echo "Error saving review: " . $e->getMessage();
