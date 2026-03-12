@@ -316,8 +316,8 @@ include 'includes/header.php';
                 </div>
             </div>
         </section>
-
       </main>
+      <?php include 'includes/footer.php'; ?>`  
     </div>
     <script src="script.js"></script>
   </body>

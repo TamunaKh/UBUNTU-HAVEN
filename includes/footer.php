@@ -39,20 +39,21 @@
                       </div>
                   </div>
               </div>
-              <div class="footer__bottom-row">
-                  <div class="footer__copyright"><p class="footer__text-small">© 2025 Ubuntu Haven. All rights
-                      reserved</p></div>
-                  <div class="footer__bottom-links">
-                      <nav class="footer__social" aria-label="Social Media">
-                          <a href="https://instagram.com" class="footer__text-small">Instagram</a>
-                          <br/>
-                          <a href="https://facebook.com" class="footer__text-small">Facebook</a>
-                      </nav>
-                      <nav class="footer__legal" aria-label="Legal">
-                          <a href="/terms" class="footer__text-small">Terms</a>
-                          <a href="/privacy" class="footer__text-small">Privacy</a>
-                      </nav>
-                  </div>
-              </div>
+              <div class="footer__bottom-row" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--gray-200);">
+                    <div class="footer__copyright">
+                        <p class="footer__text-small" style="margin: 0;">© 2025 Ubuntu Haven. All rights reserved</p>
+                    </div>
+                    
+                    <div class="footer__bottom-links" style="display: flex; flex-wrap: wrap; gap: 24px; justify-content: center;">
+                        <nav class="footer__social" aria-label="Social Media" style="display: flex; gap: 16px;">
+                            <a href="https://instagram.com" class="footer__text-small">Instagram</a>
+                            <a href="https://facebook.com" class="footer__text-small">Facebook</a>
+                        </nav>
+                        <nav class="footer__legal" aria-label="Legal" style="display: flex; gap: 16px;">
+                            <a href="/terms" class="footer__text-small">Terms</a>
+                            <a href="/privacy" class="footer__text-small">Privacy</a>
+                        </nav>
+                    </div>
+                </div>
           </div>
       </footer>

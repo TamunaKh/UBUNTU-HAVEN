@@ -5,21 +5,32 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
 
 require_once 'db_config.php';
-
 
 $page_title = 'My Portal | Ubuntu Haven';
 $hero_image = 'img/image.webp'; 
 include 'includes/header.php'; 
 
 $user_id = $_SESSION['user_id'];
+
 try {
     $stmt = $pdo->prepare("SELECT * FROM bookings WHERE user_id = ? ORDER BY check_in DESC");
     $stmt->execute([$user_id]);
     $bookings = $stmt->fetchAll();
 } catch (PDOException $e) {
     $error = "Could not fetch bookings: " . $e->getMessage();
+}
+
+try {
+    $gallery_stmt = $pdo->prepare("SELECT image_path FROM gallery WHERE user_id = ? ORDER BY uploaded_at DESC");
+    $gallery_stmt->execute([$user_id]);
+    $photos = $gallery_stmt->fetchAll();
+} catch (PDOException $e) {
+    $gallery_error = "Could not fetch photos: " . $e->getMessage();
 }
 ?>
 
@@ -89,9 +100,60 @@ try {
                     </div>
                     
                     <div style="background: #f9f9f9; padding: 24px; border-radius: 8px;">
+                        <h3 class="text-heading-medium" style="margin-bottom: 16px;">Leave a Review</h3>
+                        <p style="margin-bottom: 16px;">Tell us about your stay!</p>
+                        
+                        <form action="process_review.php" method="POST" style="display: flex; flex-direction: column; gap: 12px;">
+                            <select name="rating" required style="padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-family: var(--font-family-body);">
+                                <option value="5">★★★★★ - Excellent</option>
+                                <option value="4">★★★★☆ - Very Good</option>
+                                <option value="3">★★★☆☆ - Average</option>
+                                <option value="2">★★☆☆☆ - Poor</option>
+                                <option value="1">★☆☆☆☆ - Terrible</option>
+                            </select>
+                            
+                            <textarea name="comment" rows="3" placeholder="Write your review here..." required style="padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-family: var(--font-family-body); resize: vertical;"></textarea>
+                            
+                            <button type="submit" class="button-outline" style="background-color: var(--primary-01); color: white; justify-content: center; width: fit-content;">Submit Review</button>
+                        </form>
+
+                        <?php if(isset($_GET['review']) && $_GET['review'] == 'success'): ?>
+                            <p style="color: green; margin-top: 12px; font-weight: bold;">Thank you for your feedback!</p>
+                        <?php endif; ?>
+                    </div>
+                    
+                    <div style="background: #f9f9f9; padding: 24px; border-radius: 8px;">
                         <h3 class="text-heading-medium" style="margin-bottom: 16px;">Resort Gallery</h3>
                         <p style="margin-bottom: 16px;">Share your favorite resort memories.</p>
-                        <a href="#" class="button-outline" style="background-color: var(--primary-01); color: white; display: inline-block;">Upload Photo</a>
+                        
+                        <form action="upload_photo.php" method="POST" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 12px;">
+                            <input type="file" name="resort_photo" accept="image/*" required style="font-family: var(--font-family-body);">
+                            <button type="submit" class="button-outline" style="background-color: var(--primary-01); color: white; justify-content: center; width: fit-content;">Upload Photo</button>
+                        </form>
+
+                        <?php if(isset($_GET['upload'])): ?>
+                            <?php if($_GET['upload'] == 'success'): ?>
+                                <p style="color: green; margin-top: 12px; font-weight: bold;">Photo uploaded successfully!</p>
+                            <?php elseif($_GET['upload'] == 'error'): ?>
+                                <p style="color: red; margin-top: 12px; font-weight: bold;">File too large! Please choose an image under 2MB.</p>
+                            <?php elseif($_GET['upload'] == 'invalid_format'): ?>
+                                <p style="color: red; margin-top: 12px; font-weight: bold;">Invalid file! Please upload a JPG, PNG, or WEBP.</p>
+                            <?php elseif($_GET['upload'] == 'move_failed'): ?>
+                                <p style="color: red; margin-top: 12px; font-weight: bold;">Server error: Could not save the file.</p>
+                            <?php endif; ?>
+                        <?php endif; ?>
+
+                        <div style="margin-top: 24px; display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 12px;">
+                            <?php if (isset($gallery_error)): ?>
+                                <p style="color: red;"><?php echo $gallery_error; ?></p>
+                            <?php elseif (!empty($photos)): ?>
+                                <?php foreach ($photos as $photo): ?>
+                                    <img src="/UBUNTU-HAVEN/<?php echo htmlspecialchars($photo['image_path']); ?>" alt="User uploaded resort photo" style="width: 100%; height: 100px; object-fit: cover; border-radius: 4px; border: 1px solid #ccc;">
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <p style="color: #666; font-size: 14px;">No photos uploaded yet.</p>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
 
